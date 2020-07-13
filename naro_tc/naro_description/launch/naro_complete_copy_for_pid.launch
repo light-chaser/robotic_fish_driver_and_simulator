@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <arg name="urdf_robot_file" default="" />
+    <param name="robot_description" command="cat $(arg urdf_robot_file)" />
+
+    <group ns="naro">
+        <!-- Spawn Part -->
+        <arg name="x" default="0.0" />
+        <arg name="y" default="0.0" />
+        <arg name="z" default="0.5" />
+        <arg name="roll" default="0.0" />
+        <arg name="pitch" default="-1.5707963267948966" />
+        <arg name="yaw" default="0.0" />
+        
+        
+        <arg name="robot_name" default="naro" />
+
+        <rosparam file="$(find naro_description)/config/naro_control_pid_turning.yaml" command="load"/>
+        
+        <param name="/naro/robot_description" command="cat $(arg urdf_robot_file)" />
+        
+        
+        <node name="urdf_spawner_naro" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg robot_name) -param /naro/robot_description"/>
+        
+        <node name="robot_state_publisher_naro" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+            <param name="publish_frequency" type="double" value="5.0" />
+        </node>
+        
+
+        <node name="naro_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="--namespace=/naro 
+                              /naro/joint_state_controller 
+                              /naro/NaroBody_1_NaroBody_2_joint_position_controller
+                              /naro/NaroBody_2_NaroBody_3_joint_position_controller
+                              /naro/NaroBody_3_Naro_caudal_fin_joint_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_right_joint_1_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_right_joint_2_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_right_joint_3_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_left_joint_1_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_left_joint_2_position_controller
+                              /naro/NaroBody_1_Naro_pectoral_fin_left_joint_3_position_controller
+                              --shutdown-timeout 3">
+
+        </node>
+
+        
+        <node name="cpg_drivers" pkg="cpg_driver_simulation" type="cpg_drivers"></node>
+         <!--
+                    -->     
+        
+        
+    </group>
+
+</launch>

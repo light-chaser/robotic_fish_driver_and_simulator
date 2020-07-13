@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <arg name="robot" default="machines"/>
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="pause" default="false"/>  <!-- Start Gazebo with a blank world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find naro_description)/worlds/ocean.world"/>
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg pause)"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+    <!--test-->
+<!--
+    <include file="$(find naro_description)/launch/naro_complete_copy_for_pid.launch">
+        <arg name="urdf_robot_file" value="$(find naro_description)/urdf/naro_copy.urdf" />
+    </include>
+-->
+    <!--use-->
+
+    <include file="$(find naro_description)/launch/naro_complete_copy.launch">
+        <arg name="urdf_robot_file" value="$(find naro_description)/urdf/naro_copy.urdf" />
+    </include>
+    
+    <node pkg="cpg_driver_simulation" type="cpg_drivers" name="driver"></node>
+    <node pkg="cpg_driver_simulation" type="fish_transform" name="fish_transform"></node>
+</launch>

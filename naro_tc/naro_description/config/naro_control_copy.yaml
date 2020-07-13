@@ -1,0 +1,37 @@
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+#group_position_controller
+
+Naro_joint_position_controllers:
+  type: effort_controllers/JointGroupPositionController
+  joints:
+    - NaroBody_1_NaroBody_2_joint
+    - NaroBody_2_NaroBody_3_joint
+    - NaroBody_3_Naro_caudal_fin_joint
+    - NaroBody_1_Naro_pectoral_fin_right_joint_1
+    - NaroBody_1_Naro_pectoral_fin_right_joint_2
+    - NaroBody_1_Naro_pectoral_fin_right_joint_3
+    - NaroBody_1_Naro_pectoral_fin_left_joint_1
+    - NaroBody_1_Naro_pectoral_fin_left_joint_2
+    - NaroBody_1_Naro_pectoral_fin_left_joint_3
+  NaroBody_1_NaroBody_2_joint: 
+    pid: {p: 10, i: 0.0, d: 0.0}
+  NaroBody_2_NaroBody_3_joint: 
+    pid: {p: 10, i: 0.0, d: 0.0}
+  NaroBody_3_Naro_caudal_fin_joint: 
+    pid: {p: 10, i: 0.0, d: 0.0}
+  NaroBody_1_Naro_pectoral_fin_right_joint_1: 
+    pid: {p: 10, i: 0, d: 0.0}
+  NaroBody_1_Naro_pectoral_fin_right_joint_2: 
+    pid: {p: 10, i: 0, d: 0.0}
+  NaroBody_1_Naro_pectoral_fin_right_joint_3: 
+    pid: {p: 1, i: 0, d: 0.0}
+  NaroBody_1_Naro_pectoral_fin_left_joint_1:
+    pid: {p: 10, i: 0, d: 0.0}
+  NaroBody_1_Naro_pectoral_fin_left_joint_2:
+    pid: {p: 10, i: 0, d: 0.0}       
+  NaroBody_1_Naro_pectoral_fin_left_joint_3:
+    pid: {p: 1, i: 0, d: 0.0}

@@ -1,0 +1,364 @@
+<robot name="pectoral_fin">
+
+
+   <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        </plugin>
+    </gazebo>
+
+	<!-- * * * Link Definitions * * * -->
+
+    <link name="base_link">
+ 	    <inertial>
+            <origin xyz="0 0 -0.00" rpy="0 0 0"/>
+            <mass value="1.636394969088" />
+         <!--<mass value="1.29054912" />        -->       
+            <inertia ixx="0.005726" ixy="0.0" ixz="0.0" iyy="0.005726" iyz="0.0" izz="0.002704"/>
+        </inertial>
+        <collision>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.052" length="0.162"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.052" length="0.162"/>
+            </geometry>
+        </visual>
+    </link>
+<!--3-dof Naro_pectoral_fin_right_link!-->    
+    <link name="Naro_pectoral_fin_right_link_freedom1">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.101024" />
+            <inertia ixx="1.68373333333e-06" ixy="0.0" ixz="0.0" iyy="1.68373333333e-06" iyz="0.0" izz="1.68373333333e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+               <box size="0.01 0.01 0.01" />
+            </geometry>
+            <material name="purple"/>
+        </visual>
+
+	</link>
+    <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_1" type="revolute">
+    	<parent link="base_link"/>
+    	<child link="Naro_pectoral_fin_right_link_freedom1"/>
+        <origin xyz="-0.04275 -0.028 -0.03622" rpy="1.5707963267948966 0 0"/>
+        <limit lower="-1.0" upper="1.0" effort="100" velocity="1.5"/>
+        <axis xyz="0 1 0"/>
+	</joint>
+    
+    <link name="Naro_pectoral_fin_right_link_freedom2">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001024" />
+            <inertia ixx="1.68373333333e-06" ixy="0.0" ixz="0.0" iyy="1.68373333333e-06" iyz="0.0" izz="1.68373333333e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+               <box size="0.01 0.01 0.01" />
+            </geometry>
+            <material name="purple"/>
+        </visual>
+	</link>
+
+    <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_2" type="revolute">
+    	<parent link="Naro_pectoral_fin_right_link_freedom1"/>
+    	<child link="Naro_pectoral_fin_right_link_freedom2"/>
+        <origin xyz="-0.01 0 0" rpy="0 0 0"/>
+        <limit lower="-1.0" upper="1.0" effort="100" velocity="1.5"/>
+        <axis xyz="1 0 0"/>
+	</joint>
+
+
+
+    <link name="Naro_pectoral_fin_right_link">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+         <mass value="0.01" />   
+            <inertia ixx="3.15811533333e-05" ixy="0.0" ixz="0.0" iyy="3.00804033333e-05" iyz="0.0" izz="2.10075e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://naro_description/meshes/pectoral_fin.dae"/>                
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://naro_description/meshes/pectoral_fin.dae"/>
+            </geometry>
+            <material name="purple"/>
+        </visual>
+	</link>
+    <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
+    only for URDF coloring -->
+    <gazebo reference="Naro_pectoral_fin_right_link_freedom1">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+    <gazebo reference="Naro_pectoral_fin_right_link_freedom2">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+        <gazebo reference="Naro_pectoral_fin_right_link">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+
+
+
+
+    </gazebo>
+    <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_3" type="revolute">
+    	<parent link="Naro_pectoral_fin_right_link_freedom2"/>
+    	<child link="Naro_pectoral_fin_right_link"/>
+        <origin xyz="0 0. 0.01" rpy="0 0 0"/>
+        <limit lower="-1.57" upper="1.57" effort="0.7" velocity="1.5"/>
+        <axis xyz="0 0 1"/>
+	</joint>
+    <transmission name="tran4_joint1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_1">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4_1">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="tran4_joint2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_2">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4_2">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>	
+    <transmission name="tran4_joint3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_right_joint_3">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4_3">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    
+<!--3-dof Naro_pectoral_fin_left_link!--> 
+    <link name="Naro_pectoral_fin_left_link_freedom1">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.101024" />
+            <inertia ixx="1.68373333333e-06" ixy="0.0" ixz="0.0" iyy="1.68373333333e-06" iyz="0.0" izz="1.68373333333e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+               <box size="0.01 0.01 0.01" />
+            </geometry>
+            <material name="purple"/>
+        </visual>
+	</link>
+    <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_1" type="revolute">
+    	<parent link="base_link"/>
+    	<child link="Naro_pectoral_fin_left_link_freedom1"/>
+        <origin xyz="-0.04275 0.028 -0.03622" rpy="-1.5707963267948966 0 0"/>
+        <limit lower="-1.0" upper="1.0" effort="100" velocity="1.5"/>
+        <axis xyz="1 0 0"/>
+	</joint>
+    
+    <link name="Naro_pectoral_fin_left_link_freedom2">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.001024" />
+            <inertia ixx="1.68373333333e-06" ixy="0.0" ixz="0.0" iyy="1.68373333333e-06" iyz="0.0" izz="1.68373333333e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+               <box size="0.01 0.01 0.01" />
+            </geometry>
+            <material name="purple"/>
+        </visual>
+	</link>
+    <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_2" type="revolute">
+    	<parent link="Naro_pectoral_fin_left_link_freedom1"/>
+    	<child link="Naro_pectoral_fin_left_link_freedom2"/>
+        <origin xyz="-0.01 0 0" rpy="0 0 0"/>
+        <limit lower="-0.4" upper="0.4" effort="100" velocity="1.5"/>
+        <axis xyz="0 1 0"/>
+	</joint>
+    <link name="Naro_pectoral_fin_left_link">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+         <mass value="0.01" />   
+            <inertia ixx="3.15811533333e-05" ixy="0.0" ixz="0.0" iyy="3.00804033333e-05" iyz="0.0" izz="2.10075e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://naro_description/meshes/pectoral_fin.dae"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://naro_description/meshes/pectoral_fin.dae"/>
+            </geometry>
+            <material name="purple"/>
+        </visual>
+	</link>
+    <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
+    only for URDF coloring -->
+    <gazebo reference="Naro_pectoral_fin_left_link_freedom1">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+    <gazebo reference="Naro_pectoral_fin_left_link_freedom2">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+    <gazebo reference="Naro_pectoral_fin_left_link">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_3" type="revolute">
+    	<parent link="Naro_pectoral_fin_left_link_freedom2"/>
+    	<child link="Naro_pectoral_fin_left_link"/>
+        <origin xyz="0 0 0.01" rpy="0 0 3.14"/>
+        <limit lower="-1.57" upper="1.57" effort="0.7" velocity="1.5"/>
+        <axis xyz="0 0 1"/>
+	</joint>
+	
+    <transmission name="tran5_freedom1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_1">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5_1">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="tran5_freedom2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_2">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5_2">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="tran5_freedom3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="NaroBody_1_Naro_pectoral_fin_left_joint_3">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5_3">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  
+    <gazebo>
+      <plugin name="lifting_surface1" filename="libLiftDragPlugin.so">
+        <a0>0</a0>
+        <alpha_stall>0.5</alpha_stall>
+        <cla>0</cla>
+        <cla_stall>0</cla_stall>
+        <cda>3</cda>
+        <cda_stall>3</cda_stall>
+        <air_density>1024</air_density>
+        <area>0.006</area>
+        <forward>0 -1 0</forward>
+        <upward>-1 0 0</upward>
+        <cp>0 0.0 0.03</cp>
+        <link_name>Naro_pectoral_fin_left_link</link_name>
+        <radial_symmetry>false</radial_symmetry>
+      </plugin>    
+    
+    </gazebo>
+    <gazebo>
+    <plugin name="lifting_surface2" filename="libLiftDragPlugin.so">
+        <a0>0</a0>
+        <alpha_stall>0.5</alpha_stall>
+        <cla>0</cla>
+        <cla_stall>0</cla_stall>
+        <cda>1.1</cda>
+        <cda_stall>3</cda_stall>
+        <area>0.006</area>
+        <air_density>1024</air_density>
+        <cp>0 0.00 0.03</cp>
+        <forward>0 -1 0</forward>
+        <upward>1 0 0</upward>
+        <link_name>Naro_pectoral_fin_right_link</link_name>
+        <radial_symmetry>false</radial_symmetry>
+      </plugin>
+    </gazebo>
+    <!--fuli-->
+    <gazebo>
+          <plugin name="BuoyancyPlugin1" filename="libBuoyancyPlugin.so">
+            <!-- a viscous liquid -->
+            <fluid_density>1024</fluid_density>
+            <link name="base_link">
+                  <center_of_volume>0,0,-0.4</center_of_volume>
+            </link>
+        </plugin>
+    </gazebo>
+
+
+</robot>

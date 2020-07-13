@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="cpg_driver" type="cpg_driver_joy_controller" name="joy_controller">
+        
+    </node>
+    <node pkg="joy" type="joy_node" name="joy">
+        
+    </node>
+    <node pkg="cpg_driver" type="cpg_driver_wireless_controller" name="wireless_controller">
+        
+    </node>
+</launch>
