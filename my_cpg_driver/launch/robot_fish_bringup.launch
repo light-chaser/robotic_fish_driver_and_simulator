@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="cpg_driver" type="cpg_driver" name="fish_driver"></node>
+    <node pkg="cpg_driver" type="cpg_driver_serial" name="serial_node"></node>
+    <node pkg="cpg_driver" type="cpg_driver_wireless_controlled" name="wireless_controlled"></node>
+    <node pkg="cpg_driver" type="cpg_driver_imu_sensor" name="imu_sensor"></node>
+</launch>
