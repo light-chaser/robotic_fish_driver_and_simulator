@@ -3,7 +3,7 @@
 #include<unistd.h>
 #include<sys/stat.h>
 #include<sensor_msgs/Imu.h>
-#include"../../../devel/include/cpg_driver_msg/cpg_param_change.h"
+#include"cpg_driver_msg/cpg_param_change.h"
 
 int fd;
 

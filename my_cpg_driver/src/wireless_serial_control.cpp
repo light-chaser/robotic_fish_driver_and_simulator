@@ -3,7 +3,7 @@
  */
 
 #include"../include/cpg_driver/wireless_serial.h"
-#include"../../../devel/include/cpg_driver_msg/cpg_param_change.h"
+#include"cpg_driver_msg/cpg_param_change.h"
 serial::Serial ser;
 param par;
 data_trans A_c,A_p_l,A_p_r,X_c,alfa_p_l,alfa_p_r,f;

@@ -3,7 +3,7 @@
 #include<sensor_msgs/Imu.h>
 #include<ros/ros.h>
 #include "../include/cpg_driver/JY901.h"
-#include"../../../devel/include/cpg_driver_msg/buffer.h"
+#include"cpg_driver_msg/buffer.h"
 #include<sensor_msgs/FluidPressure.h>
 #define g 9.8;
 

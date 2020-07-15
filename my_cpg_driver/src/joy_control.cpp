@@ -1,6 +1,6 @@
 #include<sensor_msgs/Joy.h>
 #include<ros/ros.h>
-#include"../../../devel/include/cpg_driver_msg/cpg_param_change.h"
+#include"cpg_driver_msg/cpg_param_change.h"
 #define p_max 0.5;
 #ifndef pi
 #define pi 3.14

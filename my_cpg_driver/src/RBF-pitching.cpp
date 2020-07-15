@@ -5,7 +5,7 @@
 //ROS LIB & THE MSG FILE
 #include<ros/ros.h>
 #include<sensor_msgs/Imu.h>
-#include"../../../devel/include/cpg_driver_msg/cpg_param_change.h"
+#include"cpg_driver_msg/cpg_param_change.h"
 #include<geometry_msgs/Quaternion.h>
 #include<tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include<tf2/transform_datatypes.h>

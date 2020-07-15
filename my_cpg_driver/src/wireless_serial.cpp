@@ -2,7 +2,7 @@
     该程序用于无线串口通信与控制（接收端待测试）
 */
 #include"../include/cpg_driver/wireless_serial.h"
-#include"../../../devel/include/cpg_driver_msg/cpg_param_change.h"
+#include"cpg_driver_msg/cpg_param_change.h"
 serial::Serial ser;
 void serial_open(std::string &port);
 params par;
