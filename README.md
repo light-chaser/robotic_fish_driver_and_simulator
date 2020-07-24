@@ -1,5 +1,5 @@
 # robotic_fish_driver_and_simulator
-A ROS_based robotic fish driver and siulator
+A ROS_based robotic fish driver and simulator
 
 
 
